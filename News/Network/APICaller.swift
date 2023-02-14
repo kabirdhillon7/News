@@ -24,7 +24,8 @@ class APICaller {
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .map { $0.data }
-            .decode(type: [NewsArticle].self, decoder: JSONDecoder())
+            .decode(type: NewsArticlesResponse.self, decoder: JSONDecoder())
+            .map { $0.articles }
             .eraseToAnyPublisher()
     }
 }

@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
+import AlamofireImage
 
 class HeadlinesViewController: UIViewController {
+    
     
     /* Requirements from API... add to NewsCell
      Source of the article (e.g. TechCrunch)
@@ -26,9 +29,50 @@ class HeadlinesViewController: UIViewController {
      
      */
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    var headlinesVM: HeadlinesViewModel!
+    var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Bind to View Model
+        let apiService = APICaller()
+        headlinesVM = HeadlinesViewModel(apiService: apiService)
+        headlinesVM.$articles
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
+    
+    
+}
+
+extension HeadlinesViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return headlinesVM.articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell") as! NewsCell
+        
+        let article = headlinesVM.articles[indexPath.row]
+        
+        if let imageUrl = URL(string: article.urlToImage) {
+            cell.articleImageView.af.setImage(withURL: imageUrl)
+        }
+        cell.titleLabel.text = article.title
+        cell.descriptionLabel.text = article.description
+        
+        return cell
+    }
 }
 

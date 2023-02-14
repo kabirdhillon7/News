@@ -23,3 +23,9 @@ struct NewsArticle: Decodable {
     var content: String?
     
 }
+
+struct NewsArticlesResponse: Decodable {
+    var status: String
+    var totalResults: Int
+    var articles: [NewsArticle]
+}
