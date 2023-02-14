@@ -51,6 +51,19 @@ class HeadlinesViewController: UIViewController {
         tableView.delegate = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the index path from the cell that was tapped
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        
+        let article = headlinesVM.articles[indexPath.row]
+        
+        let detailViewController = segue.destination as! NewsWebViewController
+        detailViewController.newsSelected = article
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     
 }
