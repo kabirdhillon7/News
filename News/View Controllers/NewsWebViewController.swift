@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 
-class NewsWebViewController: UIViewController {
+class NewsWebViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -31,8 +31,4 @@ class NewsWebViewController: UIViewController {
         webView.allowsBackForwardNavigationGestures = true
     }
 
-}
-
-extension NewsWebViewController: WKNavigationDelegate {
-    
 }
