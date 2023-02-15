@@ -43,7 +43,6 @@ class HeadlinesViewController: UIViewController {
         
         let detailViewController = segue.destination as! NewsWebViewController
         detailViewController.newsSelected = article
-        self.hidesBottomBarWhenPushed = true
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
