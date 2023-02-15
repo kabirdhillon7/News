@@ -21,7 +21,6 @@ struct NewsArticle: Decodable {
     var urlToImage: String?
     var publishedAt: String
     var content: String?
-    
 }
 
 struct NewsArticlesResponse: Decodable {
