@@ -28,4 +28,21 @@ class APICaller {
             .map { $0.articles }
             .eraseToAnyPublisher()
     }
+    
+    // Search
+    func getSearchResults(search: String) -> AnyPublisher<[NewsArticle], Error> {
+        guard let encodedSearch = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: "https://newsapi.org/v2/everything?q=\(encodedSearch)&apiKey=\(API.key.rawValue)")
+        else {
+            return Fail(error: NSError(domain: "Invalid url", code: 0)).eraseToAnyPublisher()
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .map { $0.data }
+            .decode(type: NewsArticlesResponse.self, decoder: JSONDecoder())
+            .map { $0.articles }
+            .eraseToAnyPublisher()
+    }
 }

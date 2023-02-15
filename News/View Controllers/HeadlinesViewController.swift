@@ -80,7 +80,7 @@ extension HeadlinesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let article = headlinesVM.articles[indexPath.row]
         
-        if let imageUrl = URL(string: article.urlToImage) {
+        if let imageUrlString = article.urlToImage, let imageUrl = URL(string: imageUrlString) {
             cell.articleImageView.af.setImage(withURL: imageUrl)
         }
         cell.titleLabel.text = article.title
