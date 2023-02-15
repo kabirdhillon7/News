@@ -58,7 +58,7 @@ Open the `News.xcworkspace` file in Xcode. Make sure that the `News` scheme is s
 
 Before you can use the app, you will need to set up your API keys. To do this, follow these steps:
 
-1. Go to https://newsapi.or and sign up for an API key.
+1. Go to https://newsapi.org and sign up for an API key.
 2. In Xcode, open the `APICaller.swift` file and replace `key` with the API key you received.
 
 ## Testing
