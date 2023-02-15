@@ -27,7 +27,7 @@ Some of the main features include:
 
 ## Demo
 ### Current Progress Walkthrough
-<img src="" width=250><br>
+<img src="https://user-images.githubusercontent.com/74223402/219205178-80a4c1f3-35af-4a18-a6ce-1b392f2b49c0.gif" width=250><br>
 
 ## Installation
 
