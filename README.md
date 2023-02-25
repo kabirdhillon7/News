@@ -16,9 +16,9 @@ News is an iOS app that allows users to view headline or search for news article
 
 Some of the main features include:
 
-- [X] User can view and scroll through a list of headline news articles
-- [X] User can tap a cell to view the news article using WebKit
-- [X] User can search for news results, and scroll through a list of results
+- User can view and scroll through a list of headline news articles
+- User can tap a cell to view the news article using WebKit
+- User can search for news results, and scroll through a list of results
 
 ## Requirements
 
